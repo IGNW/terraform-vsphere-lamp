@@ -70,11 +70,6 @@ resource "vsphere_virtual_machine" "node" {
       user = "terraform"
       password = "${var.terraform_password}"
     }
-    inline = [
-<<EOT
-set -x
-sudo echo $(date) VM created by Terraform > /tmp/terraform.log
-EOT
-    ]
+    script = "modules/vm/setup.sh"
   }
 }
