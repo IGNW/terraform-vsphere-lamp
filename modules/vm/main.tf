@@ -22,6 +22,14 @@ data "vsphere_virtual_machine" "template" {
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
+data "template_file" "setup" {
+  template = "${file("${path.module}/setup.sh.tpl")}"
+
+  vars {
+    mysql_root_password = "${var.terraform_password}"
+  }
+}
+
 resource "vsphere_virtual_machine" "node" {
 
   name               = "${var.hostname}"
@@ -70,6 +78,6 @@ resource "vsphere_virtual_machine" "node" {
       user = "terraform"
       password = "${var.terraform_password}"
     }
-    script = "modules/vm/setup.sh"
+    inline = "${data.template_file.setup.rendered}"
   }
 }
