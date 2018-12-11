@@ -3,5 +3,5 @@ output "hostname" {
 }
 
 output "public_ip" {
-  value = "${module.vm.public_ip}"
+  value = "${module.lamp.public_ip}"
 }

@@ -5,8 +5,8 @@ provider "vsphere" {
   allow_unverified_ssl = true
 }
 
-module "vm" {
-  source                  = "modules/vm"
+module "lamp" {
+  source                  = "modules/lamp"
 
   vsphere_datacenter      = "${var.vsphere_datacenter}"
   vsphere_datastore       = "${var.vsphere_datastore}"
