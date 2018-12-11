@@ -28,6 +28,7 @@ sudo ufw allow in "Apache Full" | tee -a "$${LOGFILE}"
 
 info "Installing MySQL"
 sudo DEBIAN_FRONTEND=noninteractive apt-get -q -y install mysql-server
+info "Securing MySQL"
 sudo mysql --user=root <<_EOF_
   UPDATE mysql.user SET Authentication_string=PASSWORD('${mysql_root_password}') WHERE User='root';
   DELETE FROM mysql.user WHERE User='';
@@ -36,3 +37,12 @@ sudo mysql --user=root <<_EOF_
   DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
   FLUSH PRIVILEGES;
 _EOF_
+
+info "Installing PHP"
+sudo apt-get install -y php libapache2-mod-php php-mcrypt php-mysql
+sudo cat > /etc/apache2/mods-enabled/dir.conf <<EOF
+<IfModule mod_dir.c>
+    DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+EOF
+echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php
