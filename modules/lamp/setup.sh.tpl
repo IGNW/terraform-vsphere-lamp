@@ -46,4 +46,17 @@ printf "<IfModule mod_dir.c>\n    DirectoryIndex index.php index.html index.cgi 
 info "Restarting Apache"
 sudo systemctl restart apache2 | tee -a "$${LOGFILE}"
 
+info "Flushing iptables"
+#!/bin/sh
+sleep 1
+iptables -F
+iptables -X
+iptables -t nat -F
+iptables -t nat -X
+iptables -t mangle -F
+iptables -t mangle -X
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+
 info "Configuration script complete"
