@@ -88,7 +88,7 @@ resource "vsphere_virtual_machine" "server" {
       user = "terraform"
       password = "${var.terraform_password}"
     }
-    source = "${path.module}/../src/"
+    source = "src/"
     destination = "/var/www/html"
   }
 
