@@ -75,7 +75,7 @@ resource "vsphere_virtual_machine" "server" {
   provisioner "remote-exec" {
     connection = {
       type = "ssh"
-      user = "terraform"
+      user = "${var.ssh_user}"
       password = "${var.terraform_password}"
     }
     inline = "${data.template_file.setup.rendered}"

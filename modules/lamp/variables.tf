@@ -58,3 +58,7 @@ variable "disk_template" {
   description = "vSphere template to use as a disk template"
   default = "CentOS_Template_Packer"
 }
+
+variable "ssh_user" {
+  default = "terraform"
+}
