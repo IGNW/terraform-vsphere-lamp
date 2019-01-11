@@ -14,6 +14,10 @@ variable "vsphere_network" {
   description = "vSphere network to use"
 }
 
+variable "ssh_user" {
+  description = "User ID to use for connecting via ssh - must be present in image"
+}
+
 variable "terraform_password" {
   description = "Password to the 'terraform' account on the disk image"
 }
@@ -57,8 +61,4 @@ variable "root_volume_size" {
 variable "disk_template" {
   description = "vSphere template to use as a disk template"
   default = "CentOS_Template_Packer"
-}
-
-variable "ssh_user" {
-  default = "terraform"
 }

@@ -12,6 +12,7 @@ module "lamp" {
   vsphere_datastore       = "${var.vsphere_datastore}"
   vsphere_compute_cluster = "${var.vsphere_compute_cluster}"
   vsphere_network         = "${var.vsphere_network}"
+  ssh_user                = "${var.ssh_user}"
   terraform_password      = "${var.terraform_password}"
 
   hostname                = "${var.hostname}"
