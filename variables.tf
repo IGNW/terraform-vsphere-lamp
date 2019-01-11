@@ -4,6 +4,7 @@ variable "vsphere_server" {
 
 variable "vsphere_user" {
   description = "vsphere user name"
+  default = "root"
 }
 
 variable "vsphere_password" {
