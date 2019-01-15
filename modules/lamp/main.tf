@@ -26,7 +26,7 @@ data "template_file" "setup" {
   template = "${file("${path.module}/setup.sh.tpl")}"
 
   vars {
-    mysql_root_password = "${var.terraform_password}"
+    mysql_root_password = "${var.ssh_password}"
   }
 }
 

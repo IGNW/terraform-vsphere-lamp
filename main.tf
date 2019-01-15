@@ -13,8 +13,7 @@ module "lamp" {
   vsphere_compute_cluster = "${var.vsphere_compute_cluster}"
   vsphere_network         = "${var.vsphere_network}"
   ssh_user                = "${var.ssh_user}"
-  terraform_password      = "${var.terraform_password}"
-
+  ssh_password            = "${var.ssh_password}"
   hostname                = "${var.hostname}"
   domain                  = "${var.domain}"
   ipv4_address            = "${var.ipv4_address}"
