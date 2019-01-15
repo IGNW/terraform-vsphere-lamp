@@ -77,8 +77,8 @@ resource "vsphere_virtual_machine" "server" {
       user = "${var.ssh_user}"
       password = "${var.ssh_password}"
     }
-    source = "src/"
-    destination = "/tmp/html"
+    source = "src"
+    destination = "/tmp"
   }
 
 

@@ -47,6 +47,6 @@ info "Restarting Apache"
 sudo systemctl restart apache2 | tee -a "$${LOGFILE}"
 
 info "Copying website content"
-sudo cp -R /tmp/html /var/www/
+sudo cp -R /tmp/src/* /var/www/html/
 
 info "Configuration script complete"
