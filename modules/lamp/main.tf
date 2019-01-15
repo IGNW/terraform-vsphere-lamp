@@ -33,7 +33,6 @@ data "template_file" "setup" {
 resource "vsphere_virtual_machine" "server" {
 
   name               = "${var.hostname}"
-  # folder             = "${var.vsphere_folder}"
   resource_pool_id   = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
   datastore_id       = "${data.vsphere_datastore.datastore.id}"
   num_cpus           = "${var.node_num_cpus}"
@@ -76,7 +75,7 @@ resource "vsphere_virtual_machine" "server" {
     connection = {
       type = "ssh"
       user = "${var.ssh_user}"
-      password = "${var.terraform_password}"
+      password = "${var.ssh_password}"
     }
     inline = "${data.template_file.setup.rendered}"
   }
@@ -85,8 +84,8 @@ resource "vsphere_virtual_machine" "server" {
   provisioner "file" {
     connection = {
       type = "ssh"
-      user = "terraform"
-      password = "${var.terraform_password}"
+      user = "${var.ssh_user}"
+      password = "${var.ssh_password}"
     }
     source = "src/"
     destination = "/var/www/html"
