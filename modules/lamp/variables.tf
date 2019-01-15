@@ -18,7 +18,7 @@ variable "ssh_user" {
   description = "User ID to use for connecting via ssh - must be present in image"
 }
 
-variable "terraform_password" {
+variable "ssh_password" {
   description = "Password to the 'terraform' account on the disk image"
 }
 
