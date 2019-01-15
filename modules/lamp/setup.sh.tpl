@@ -46,4 +46,7 @@ printf "<IfModule mod_dir.c>\n    DirectoryIndex index.php index.html index.cgi 
 info "Restarting Apache"
 sudo systemctl restart apache2 | tee -a "$${LOGFILE}"
 
+info "Copying website content"
+sudo cp -R /tmp/html /var/www/
+
 info "Configuration script complete"

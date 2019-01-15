@@ -70,6 +70,18 @@ resource "vsphere_virtual_machine" "server" {
       }
   }
 
+  # Upload the website source
+  provisioner "file" {
+    connection = {
+      type = "ssh"
+      user = "${var.ssh_user}"
+      password = "${var.ssh_password}"
+    }
+    source = "src/"
+    destination = "/tmp/html"
+  }
+
+
   # Run the configuration script
   provisioner "remote-exec" {
     connection = {
@@ -80,15 +92,6 @@ resource "vsphere_virtual_machine" "server" {
     inline = "${data.template_file.setup.rendered}"
   }
 
-  # Upload the website source
-  provisioner "file" {
-    connection = {
-      type = "ssh"
-      user = "${var.ssh_user}"
-      password = "${var.ssh_password}"
-    }
-    source = "src/"
-    destination = "/var/www/html"
-  }
+
 
 }
